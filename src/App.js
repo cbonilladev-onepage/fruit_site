@@ -24,12 +24,12 @@ function App() {
             <Switch location={location} key={location.pathname}>
               <Route
                 exact
-                path='/'
+                path={process.env.PUBLIC_URL + '/'}
                 render={() => <Home imageDetails={imageDetails} />}
               />
               <Route
                 exact
-                path='/some/:id'
+                path={process.env.PUBLIC_URL + '/some/:id'}
                 render={() => <Model imageDetails={imageDetails} />}
               />
             </Switch>

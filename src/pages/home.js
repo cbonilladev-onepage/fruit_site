@@ -22,7 +22,7 @@ const Home = ({ imageDetails, image }) => (
                 height: imageDetails.height,
               }}>
               <div className='frame'>
-                <Link to={`/some/fruit`}>
+                <Link to={process.env.PUBLIC_URL + `/some/fruit`}>
                   <ProgressiveImage
                     src={require("../images/fruit.webp")}
                     placeholder={require("../images/compressed-image.jpg")}>
