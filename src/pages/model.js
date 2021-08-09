@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import React from "react";
+import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import React, { useEffect, useState } from "react";
 //Components
 import ScrollForMore from "../components/scrollForMore";
 //Ease
@@ -7,11 +7,7 @@ import ScrollForMore from "../components/scrollForMore";
 const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] }
 
 const firstName = {
-  initial: {
-    y: 0
-  },
   animate: {
-    y: 0,
     transition: {
       delayChildren: .6,
       staggerChildren: .04,
@@ -21,11 +17,7 @@ const firstName = {
 }
 
 const lastName = {
-  initial: {
-    y: 0
-  }, 
   animate: {
-    y: 0,
     transition: {
       delayChildren: .6,
       staggerChilren: .04,
@@ -45,8 +37,22 @@ const letter = {
 }
 
 const Model = ({ imageDetails }) => {
+  const {scrollYProgress} = useViewportScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1.25])
+  
+  const [canScroll, setCanScroll] = useState(false)
+
+  useEffect(() => {
+    if (canScroll === false) {
+      document.querySelector("body").classList.add("no-scroll");
+    } else {
+      document.querySelector("body").classList.remove("no-scroll");
+    }
+  }, [canScroll])
+
   return (
     <motion.div
+      onAnimationComplete={() => {setCanScroll(true)}}
       initial='initial'
       animate='animate'
       exit='exit'
@@ -54,7 +60,13 @@ const Model = ({ imageDetails }) => {
       <div className='container fluid'>
         <div className='row center top-row'>
           <div className='top'>
-            <motion.div initial={{ opacity: 0 }} className='details'>
+            <motion.div initial={{ opacity: 0, y: 20 }} 
+            animate={{
+              opacity: 1,
+              y: 20,
+              transition: { delay: 1.2, ...transition }
+            }}
+            className='details'>
               <div className='location'>
                 <span>28.538336</span>
                 <span>-81.379234</span>
@@ -96,15 +108,16 @@ const Model = ({ imageDetails }) => {
                 className='thumbnail-single'>
                 <div className='frame-single'>
                   <motion.img
+                  style={{scale: scale}}
                     initial={{ scale: 1.1 }}
                     animate={{
                       transition: { delay: 0.2, ...transition },
                       y: window.innerWidth > 1440 ? -1200 : -600, 
                     }}
-                    src={require("../images/fruit.webp")} alt='some fruit' />
+                    src={require("../images/fruit.jpg")} alt='some fruit' />
                 </div>
               </motion.div>
-            </div>motion.
+            </div>
           </div>
           <ScrollForMore />
         </div>
