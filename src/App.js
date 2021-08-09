@@ -29,7 +29,7 @@ function App() {
               />
               <Route
                 exact
-                path='/model/:id'
+                path='/some/:id'
                 render={() => <Model imageDetails={imageDetails} />}
               />
             </Switch>

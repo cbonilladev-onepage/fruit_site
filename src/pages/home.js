@@ -22,9 +22,9 @@ const Home = ({ imageDetails, image }) => (
                 height: imageDetails.height,
               }}>
               <div className='frame'>
-                <Link to={`/model/yasmeen-tariq`}>
+                <Link to={`/some/fruit`}>
                   <ProgressiveImage
-                    src={require("../images/yasmeen.webp")}
+                    src={require("../images/fruit.webp")}
                     placeholder={require("../images/compressed-image.jpg")}>
                     {(src) => <motion.img whileHover={{scale: 1.1}} transition={{transition}} src={src} alt='Fruit' />}
                   </ProgressiveImage>
