@@ -59,6 +59,10 @@ const Model = ({ imageDetails }) => {
                 <div className='frame-single'>
                   <motion.img
                     initial={{ scale: 1.1 }}
+                    animate={{
+                      transition: { delay: 0.2, ...transition },
+                      y: window.innerWidth > 1440 ? -1200 : -600, 
+                    }}
                     src={require("../images/yasmeen.webp")} alt='some fruit' />
                 </div>
               </motion.div>
