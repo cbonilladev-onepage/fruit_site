@@ -6,6 +6,44 @@ import ScrollForMore from "../components/scrollForMore";
 
 const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] }
 
+const firstName = {
+  initial: {
+    y: 0
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: .6,
+      staggerChildren: .04,
+      staggerDirection: -1,
+    }
+  }
+}
+
+const lastName = {
+  initial: {
+    y: 0
+  }, 
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: .6,
+      staggerChilren: .04,
+      staggerDirection: 1
+    }
+  }
+}
+
+const letter = {
+  initial: {
+    y: 400
+  },
+  animate: {
+    y: 0,
+    transition: { duration: 1, ...transition}
+  }
+}
+
 const Model = ({ imageDetails }) => {
   return (
     <motion.div
@@ -23,20 +61,20 @@ const Model = ({ imageDetails }) => {
               </div>
               <div className='mua'>Instagram: @somefruit</div>
             </motion.div>
-            <motion.div initial={{ opacity: 0 }} className='model'>
-              <span className='first'>
-                <span>S</span>
-                <span>o</span>
-                <span>m</span>
-                <span>e</span>
-              </span>
-              <span className='last'>
-                <span>F</span>
-                <span>r</span>
-                <span>u</span>
-                <span>i</span>
-                <span>t</span>
-              </span>
+            <motion.div className='model'>
+              <motion.span variants={firstName} className='first' >
+                <motion.span variants={letter}>S</motion.span>
+                <motion.span variants={letter}>o</motion.span>
+                <motion.span variants={letter}>m</motion.span>
+                <motion.span variants={letter}>e</motion.span>
+              </motion.span>
+              <motion.span variants={lastName} className='last'>
+                <motion.span variants={letter}>F</motion.span>
+                <motion.span variants={letter}>r</motion.span>
+                <motion.span variants={letter}>u</motion.span>
+                <motion.span variants={letter}>i</motion.span>
+                <motion.span variants={letter}>t</motion.span>
+              </motion.span>
             </motion.div>
           </div>
         </div>
@@ -66,7 +104,7 @@ const Model = ({ imageDetails }) => {
                     src={require("../images/fruit.webp")} alt='some fruit' />
                 </div>
               </motion.div>
-            </div>
+            </div>motion.
           </div>
           <ScrollForMore />
         </div>
